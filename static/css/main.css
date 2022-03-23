@@ -1,0 +1,16 @@
+/* body {
+    background: lightblue;
+  } */
+
+body, html {
+    height: 100%;
+}
+
+body {
+  background-image: url("../images/cool-background.png");
+  height: 100%; 
+  background-size:cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: full; 
+}

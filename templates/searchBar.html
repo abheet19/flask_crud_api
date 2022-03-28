@@ -1,0 +1,18 @@
+{% extends 'base.html' %} 
+{% block content %}
+
+<div class="container">
+    <h3 class="my-4">Flask CRUD API Webapp by Abheet</h3>
+        <div class="col-sm-2 my-1">
+            <form action="/search/{{users.id}}" method="POST">
+                <input type="text" class="input-medium search-query">
+                <button type="submit" class="btn btn-primary btn-block">search</button>
+            </form>
+          </div>
+    
+     
+</div>
+
+
+
+{% endblock content %}

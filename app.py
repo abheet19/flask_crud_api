@@ -1,8 +1,11 @@
 from flask import Flask,render_template,request,redirect
 from flask_sqlalchemy import SQLAlchemy  # add
 from datetime import datetime  # add
+from forms import searchForm
+
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'root'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'  # add
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)  # add
@@ -15,6 +18,7 @@ class User(db.Model):
 
     def __repr__(self):
         return '<User %r>' % self.name
+
 
 
 #######  Crud  ########
@@ -64,6 +68,23 @@ def update(id):
         title = "Update Data"
         return render_template('update.html', title=title, user=user)
 
+
+
+
+
+@app.route('/search/', methods=['POST'])
+def search():
+    
+
+   # users = User.query.get_or_404(id)s
+
+    name = request.form['name']
+    # print(name)
+    users = User.query.filter(User.name.like("%"+name+"%")).all()
+    print(users)
+    # #users = User.query.order_by(User.created_at).all()
+    return render_template("search.html",  users=users)
+    #return redirect('/')
 
 if __name__ == '__main__':
     app.run(debug=True)
